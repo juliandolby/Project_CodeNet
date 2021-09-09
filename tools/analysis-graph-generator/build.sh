@@ -1,9 +1,13 @@
+#!/bin/bash
+
 # get WALA
-git clone https://github.com/wala/WALA
-cd WALA
-git checkout java11
-./gradlew clean assemble publishToMavenLocal
-cd ..
+if test ! -e WALA; then
+    git clone https://github.com/wala/WALA
+    cd WALA
+    git checkout
+    ./gradlew clean build publishToMavenLocal -x test
+    cd ..
+fi
 
 mvn clean install
 
